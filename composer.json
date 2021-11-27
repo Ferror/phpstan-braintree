@@ -1,0 +1,21 @@
+{
+    "name": "ferror/phpstan-braintree",
+    "description": "PHPStan extension for Braintree SDK",
+    "license": "MIT",
+    "authors": [],
+    "autoload": {
+        "psr-4": {
+            "Ferror\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ferror\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=8.0",
+        "phpstan/phpstan": "^1.2.0",
+        "braintree/braintree_php": "^6.5.0"
+    }
+}

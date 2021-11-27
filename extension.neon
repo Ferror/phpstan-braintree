@@ -1,0 +1,15 @@
+parameters:
+
+services:
+	-
+		class: Ferror\PHPStan\Braintree\Reflection\BraintreePlanPropertiesClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
+	-
+		class: Ferror\PHPStan\Braintree\Reflection\BraintreeWebhookNotificationPropertiesClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
+	-
+		class: Ferror\PHPStan\Braintree\Reflection\BraintreeSubscriptionPropertiesClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension

@@ -7,7 +7,6 @@ use Braintree\Plan;
 
 class BraintreePlanPropertiesClassReflectionExtensionTest extends \PHPUnit\Framework\TestCase
 {
-
 	use ReflectionMockingTrait;
 
 	/** @var \Ferror\PHPStan\Braintree\Reflection\BraintreePlanPropertiesClassReflectionExtension */

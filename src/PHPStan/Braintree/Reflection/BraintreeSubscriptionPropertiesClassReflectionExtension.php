@@ -22,15 +22,11 @@ class BraintreeSubscriptionPropertiesClassReflectionExtension implements Propert
 {
 	use PropertyImplementationMakerTrait;
 
-	/**
-	 * @var mixed[]
-	 */
 	private array $properties;
 
 	public function __construct()
 	{
 		$this->properties = [
-
 			'timestamp' => [new ObjectType(DateTime::class), false, false, true],
 			'kind' => [new StringType(), false, false, true],
 			'subject' => [new ArrayType(new StringType()), false, false, true],
@@ -69,7 +65,6 @@ class BraintreeSubscriptionPropertiesClassReflectionExtension implements Propert
 			'trialDurationUnit' => [new StringType(), false, false, true],
 			'trialPeriod' => [new BooleanType(), false, false, true],
 			'updatedAt' => [new ObjectType(DateTime::class), false, false, true],
-
 		];
 	}
 

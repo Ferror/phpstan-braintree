@@ -19,12 +19,8 @@ use PHPStan\Type\StringType;
 
 class BraintreePlanPropertiesClassReflectionExtension implements PropertiesClassReflectionExtension
 {
-
 	use PropertyImplementationMakerTrait;
 
-	/**
-	 * @var mixed[]
-	 */
 	private array $properties;
 
 	public function __construct()

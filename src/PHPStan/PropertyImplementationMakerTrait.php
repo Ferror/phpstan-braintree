@@ -13,18 +13,13 @@ trait PropertyImplementationMakerTrait
 	{
 		return new class($type, $declaringClass, $static, $private, $public) implements PropertyReflection
 		{
-			/**
-			 * @var mixed
-			 */
-			private $type, $declaringClass, $static, $private, $public;
-
-			public function __construct(Type $type, ClassReflection $declaringClass, bool $static, bool $private, bool $public)
-			{
-				$this->type = $type;
-				$this->declaringClass = $declaringClass;
-				$this->static = $static;
-				$this->private = $private;
-				$this->public = $public;
+			public function __construct(
+                private Type $type,
+                private ClassReflection $declaringClass,
+                private bool $static,
+                private bool $private,
+                private bool $public,
+            ) {
 			}
 
 			public function getDeclaringClass(): ClassReflection

@@ -4,24 +4,19 @@ declare(strict_types=1);
 namespace Ferror\PHPStan\Braintree\Reflection;
 
 use DateTime;
-use Ferror\PHPStan\PropertyImplementationMakerTrait;
-use PHPStan\Reflection\ClassReflection;
+use Ferror\PHPStan\Braintree\AbstractReflection;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
-use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Type\ArrayType;
 use PHPStan\Type\BooleanType;
 use PHPStan\Type\IntegerType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 
-class Plan implements PropertiesClassReflectionExtension
+class Plan extends AbstractReflection implements PropertiesClassReflectionExtension
 {
-	use PropertyImplementationMakerTrait;
-
-	private array $properties;
-
 	public function __construct()
 	{
+        $this->name = \Braintree\Plan::class;
 		$this->properties = [
 			'id' => [new StringType(), false, false, true],
 			'description' => [new StringType(), false, false, true],
@@ -39,17 +34,5 @@ class Plan implements PropertiesClassReflectionExtension
 			'addOns' => [new ArrayType(new IntegerType(), new ObjectType(\Braintree\AddOn::class)), false, false, true],
 			'discounts' => [new ArrayType(new IntegerType(), new ObjectType(\Braintree\Discount::class)), false, false, true],
 		];
-	}
-
-	public function hasProperty(ClassReflection $classReflection, string $propertyName): bool
-	{
-		return $classReflection->getName() === \Braintree\Plan::class
-			&& \array_key_exists($propertyName, $this->properties);
-	}
-
-	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection
-	{
-		$key = $this->properties[$propertyName];
-		return $this->returnPropertyImplementation($key[0], $classReflection, $key[1], $key[2], $key[3]);
 	}
 }

@@ -23,16 +23,8 @@ class PlanTest extends TestCase
 
 	public function dataHasProperty(): iterable
 	{
-		yield [
-            \Braintree\Plan::class,
-			'foo',
-			false,
-		];
-		yield [
-            \Braintree\Plan::class,
-			'billingDayOfMonth',
-			true,
-		];
+		yield [\Braintree\Plan::class, 'foo', false];
+		yield [\Braintree\Plan::class, 'billingDayOfMonth', true];
 	}
 
 	/**

@@ -3,25 +3,20 @@ declare(strict_types=1);
 
 namespace Ferror\PHPStan\Braintree\Reflection;
 
-use Ferror\PHPStan\PropertyImplementationMakerTrait;
-use PHPStan\Reflection\ClassReflection;
+use Ferror\PHPStan\Braintree\AbstractReflection;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
-use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Type\StringType;
 
-class Customer implements PropertiesClassReflectionExtension
+class Customer extends AbstractReflection implements PropertiesClassReflectionExtension
 {
-	use PropertyImplementationMakerTrait;
-
-	private array $properties;
-
 	public function __construct()
 	{
+        $this->name =  \Braintree\Customer::class;
 		$this->properties = [
-			'id' => [new StringType(), false, false, true],
-            'company' => [],
+            'id' => [new StringType(), false, false, true],
+            'company' => [new StringType(), false, false, true],
             'customFields' => [],
-            'deviceData' => [],
+            'deviceData' => [new StringType(), false, false, true],
             'email' => [],
             'tax' => [],
             'firstName' => [],
@@ -30,8 +25,8 @@ class Customer implements PropertiesClassReflectionExtension
             'phone' => [],
             'website' => [],
             'riskData' => [
-                'customerBrowser' => [],
-                'customerIp' => [],
+                'customerBrowser' => [new StringType(), false, false, true],
+                'customerIp' => [new StringType(), false, false, true],
             ],
             'taxIdentifiers' => [
                 [
@@ -80,17 +75,5 @@ class Customer implements PropertiesClassReflectionExtension
                 'token' => [],
             ]
 		];
-	}
-
-	public function hasProperty(ClassReflection $classReflection, string $propertyName): bool
-	{
-		return $classReflection->getName() === \Braintree\Customer::class
-			&& \array_key_exists($propertyName, $this->properties);
-	}
-
-	public function getProperty(ClassReflection $classReflection, string $propertyName): PropertyReflection
-	{
-		$key = $this->properties[$propertyName];
-		return $this->returnPropertyImplementation($key[0], $classReflection, $key[1], $key[2], $key[3]);
 	}
 }

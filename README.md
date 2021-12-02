@@ -1,10 +1,9 @@
-# PHPStan for Braintree SDK copied from Finwe to try upgrade library to PHP 8.8
+# PHPStan for Braintree SDK
 
-# Todo
+## Story
+The first author of phpstan-braintree extension is Matěj [Finwe](https://github.com/finwe) Humpál who started creating this extension,
+but the last commit is from 2017. Now it's been a couple of years and my company [Landingi](https://github.com/Landingi) is using
+the Braintree PHP SDK, that's why I decided to fork the solution and improve it by creating more classes reflection.
 
-* Customer
-* Payment Method
-
-# Done
-
-* Subscription
+## Pioneer
+https://github.com/finwe/phpstan-braintree

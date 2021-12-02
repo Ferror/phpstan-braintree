@@ -3,14 +3,16 @@ declare(strict_types=1);
 
 namespace Ferror\PHPStan\Braintree\Reflection;
 
-use Braintree\Plan;
+use DateTime;
 use Ferror\PHPStan\PropertyImplementationMakerTrait;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\PropertiesClassReflectionExtension;
 use PHPStan\Reflection\PropertyReflection;
+use PHPStan\Type\ArrayType;
+use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 
-class BraintreeCustomerPropertiesClassReflectionExtension implements PropertiesClassReflectionExtension
+class WebhookNotification implements PropertiesClassReflectionExtension
 {
 	use PropertyImplementationMakerTrait;
 
@@ -19,13 +21,16 @@ class BraintreeCustomerPropertiesClassReflectionExtension implements PropertiesC
 	public function __construct()
 	{
 		$this->properties = [
-			'id' => [new StringType(), false, false, true],
+			'timestamp' => [new ObjectType(DateTime::class), false, false, true],
+			'kind' => [new StringType(), false, false, true],
+			'subject' => [new ArrayType(new StringType()), false, false, true],
+			'subscription' => [new ObjectType(\Braintree\Subscription::class), false, false, true],
 		];
 	}
 
 	public function hasProperty(ClassReflection $classReflection, string $propertyName): bool
 	{
-		return $classReflection->getName() === Plan::class
+		return $classReflection->getName() === \Braintree\WebhookNotification::class
 			&& \array_key_exists($propertyName, $this->properties);
 	}
 

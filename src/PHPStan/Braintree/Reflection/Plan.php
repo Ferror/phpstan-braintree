@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace Ferror\PHPStan\Braintree\Reflection;
 
-use Braintree\AddOn;
-use Braintree\Discount;
-use Braintree\Plan;
 use DateTime;
 use Ferror\PHPStan\PropertyImplementationMakerTrait;
 use PHPStan\Reflection\ClassReflection;
@@ -17,7 +14,7 @@ use PHPStan\Type\IntegerType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 
-class BraintreePlanPropertiesClassReflectionExtension implements PropertiesClassReflectionExtension
+class Plan implements PropertiesClassReflectionExtension
 {
 	use PropertyImplementationMakerTrait;
 
@@ -27,35 +24,26 @@ class BraintreePlanPropertiesClassReflectionExtension implements PropertiesClass
 	{
 		$this->properties = [
 			'id' => [new StringType(), false, false, true],
-			'merchantId' => [new StringType(), false, false, true],
-
 			'description' => [new StringType(), false, false, true],
 			'name' => [new StringType(), false, false, true],
-
 			'billingDayOfMonth' => [new IntegerType(), false, false, true],
 			'billingFrequency' => [new IntegerType(), false, false, true],
-
 			'numberOfBillingCycles' => [new IntegerType(), false, false, true],
-
 			'price' => [new StringType(), false, false, true],
 			'currencyIsoCode' => [new StringType(), false, false, true],
-
 			'trialDuration' => [new IntegerType(), false, false, true],
 			'trialDurationUnit' => [new StringType(), false, false, true],
 			'trialPeriod' => [new BooleanType(), false, false, true],
-
 			'createdAt' => [new ObjectType(DateTime::class), false, false, true],
 			'updatedAt' => [new ObjectType(DateTime::class), false, false, true],
-
-			'addOns' => [new ArrayType(new ObjectType(AddOn::class)), false, false, true],
-			'discounts' => [new ArrayType(new ObjectType(Discount::class)), false, false, true],
-			'plans' => [new ArrayType(new ObjectType(Plan::class)), false, false, true],
+			'addOns' => [new ArrayType(new IntegerType(), new ObjectType(\Braintree\AddOn::class)), false, false, true],
+			'discounts' => [new ArrayType(new IntegerType(), new ObjectType(\Braintree\Discount::class)), false, false, true],
 		];
 	}
 
 	public function hasProperty(ClassReflection $classReflection, string $propertyName): bool
 	{
-		return $classReflection->getName() === Plan::class
+		return $classReflection->getName() === \Braintree\Plan::class
 			&& \array_key_exists($propertyName, $this->properties);
 	}
 

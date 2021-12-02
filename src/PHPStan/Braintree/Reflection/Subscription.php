@@ -3,10 +3,6 @@ declare(strict_types=1);
 
 namespace Ferror\PHPStan\Braintree\Reflection;
 
-use Braintree\AddOn;
-use Braintree\Discount;
-use Braintree\Subscription;
-use Braintree\Transaction;
 use DateTime;
 use Ferror\PHPStan\PropertyImplementationMakerTrait;
 use PHPStan\Reflection\ClassReflection;
@@ -18,7 +14,7 @@ use PHPStan\Type\IntegerType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\StringType;
 
-class BraintreeSubscriptionPropertiesClassReflectionExtension implements PropertiesClassReflectionExtension
+class Subscription implements PropertiesClassReflectionExtension
 {
 	use PropertyImplementationMakerTrait;
 
@@ -30,8 +26,8 @@ class BraintreeSubscriptionPropertiesClassReflectionExtension implements Propert
 			'timestamp' => [new ObjectType(DateTime::class), false, false, true],
 			'kind' => [new StringType(), false, false, true],
 			'subject' => [new ArrayType(new StringType()), false, false, true],
-			'subscription' => [new ObjectType(Subscription::class), false, false, true],
-			'addOns' => [new ArrayType(new ObjectType(AddOn::class)), false, false, true],
+			'subscription' => [new ObjectType(\Braintree\Subscription::class), false, false, true],
+			'addOns' => [new ArrayType(new ObjectType(\Braintree\AddOn::class)), false, false, true],
 			'balance' => [new StringType(), false, false, true],
 			'billingDayOfMonth' => [new IntegerType(), false, false, true],
 			'billingPeriodEndDate' => [new StringType(), false, false, true],
@@ -44,7 +40,7 @@ class BraintreeSubscriptionPropertiesClassReflectionExtension implements Propert
 			'name' => [new StringType(), false, false, true],
 			'phone' => [new StringType(), false, false, true],
 			'url' => [new StringType(), false, false, true],
-			'discounts' => [new ArrayType(new ObjectType(Discount::class)), false, false, true],
+			'discounts' => [new ArrayType(new ObjectType(\Braintree\Discount::class)), false, false, true],
 			'failureCount' => [new IntegerType(), false, false, true],
 			'firstBillingDate' => [new StringType(), false, false, true],
 			'id' => [new StringType(), false, false, true],
@@ -60,7 +56,7 @@ class BraintreeSubscriptionPropertiesClassReflectionExtension implements Propert
 			'price' => [new StringType(), false, false, true],
 			'status' => [new StringType(), false, false, true],
 			'statusHistory' => [new ArrayType(new StringType()), false, false, true],
-			'transactions' => [new ArrayType(new ObjectType(Transaction::class)), false, false, true],
+			'transactions' => [new ArrayType(new ObjectType(\Braintree\Transaction::class)), false, false, true],
 			'trialDuration' => [new IntegerType(), false, false, true],
 			'trialDurationUnit' => [new StringType(), false, false, true],
 			'trialPeriod' => [new BooleanType(), false, false, true],

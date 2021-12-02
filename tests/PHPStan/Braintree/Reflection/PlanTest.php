@@ -3,40 +3,36 @@ declare(strict_types=1);
 
 namespace Ferror\PHPStan\Braintree\Reflection;
 
-use Braintree\Plan;
+use PHPUnit\Framework\TestCase;
 
-class BraintreePlanPropertiesClassReflectionExtensionTest extends \PHPUnit\Framework\TestCase
+class PlanTest extends TestCase
 {
 	use ReflectionMockingTrait;
 
-	/** @var \Ferror\PHPStan\Braintree\Reflection\BraintreePlanPropertiesClassReflectionExtension */
-	private BraintreePlanPropertiesClassReflectionExtension $extension;
+    /**
+     * @var \Ferror\PHPStan\Braintree\Reflection\Plan
+     */
+	private Plan $extension;
 
 	protected function setUp(): void
     {
 		parent::setUp();
 
-		$this->extension = new BraintreePlanPropertiesClassReflectionExtension();
+		$this->extension = new \Ferror\PHPStan\Braintree\Reflection\Plan();
 	}
 
-	/**
-	 * @return mixed[]
-	 */
-	public function dataHasProperty(): array
+	public function dataHasProperty(): iterable
 	{
-		$data = [];
-		$data[] = [
-			Plan::class,
+		yield [
+            \Braintree\Plan::class,
 			'foo',
 			false,
 		];
-		$data[] = [
-			Plan::class,
+		yield [
+            \Braintree\Plan::class,
 			'billingDayOfMonth',
 			true,
 		];
-
-		return $data;
 	}
 
 	/**

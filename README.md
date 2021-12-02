@@ -1,3 +1,8 @@
+[![Build Status](https://github.com/ferror/phpstan-braintree/actions/workflows/ci.yaml/badge.svg)](https://github.com/ferror/phpstan-braintree/actions/workflows/ci.yaml)
+[![Latest Stable Version](https://poser.pugx.org/ferror/phpstan-braintree/v)](https://packagist.org/packages/ferror/phpstan-braintree)
+[![Total Downloads](https://poser.pugx.org/ferror/phpstan-braintree/downloads)](https://packagist.org/packages/ferror/phpstan-braintree)
+[![License](https://poser.pugx.org/ferror/phpstan-braintree/license)](https://packagist.org/packages/ferror/phpstan-braintree)
+
 # PHPStan for Braintree SDK
 
 ## Story
